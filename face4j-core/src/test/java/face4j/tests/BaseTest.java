@@ -18,6 +18,8 @@ public abstract class BaseTest
 	
 	protected final String status;
 	
+	protected final String guesses;
+	
 	public BaseTest() throws IOException
 	{
 		twoFaces  = getJsonString("/data/photo2faces.json");
@@ -25,6 +27,7 @@ public abstract class BaseTest
 		saveTag   = getJsonString("/data/save.json");
 		removeTag = getJsonString("/data/remove.json");
 		status    = getJsonString("/data/status.json"); 
+		guesses   = getJsonString("/data/guess.json"); 
 	}
 	
 	private String getJsonString(String file) throws IOException

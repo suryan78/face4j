@@ -75,4 +75,17 @@ public class ResponseTests extends BaseTest
 		
 		assertEquals(1, sr.getTrainingStatus().size());
 	}
+	
+	@Test
+	public void guesses () throws FaceClientException
+	{
+		PhotoResponse sr = new PhotoResponseImpl(guesses);
+		
+		assertEquals(1, sr.getPhotos().size());
+		
+		Photo p1 = sr.getPhotos().get(0);
+		
+		assertEquals("someothergirl@araucana", p1.getFaces().get(0).getGuess().first);
+		assertEquals("dude@araucana", p1.getFaces().get(1).getGuess().first);
+	}
 }
