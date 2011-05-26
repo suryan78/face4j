@@ -75,6 +75,12 @@ public class Face
 
 	private Point mouthCenter;
 
+	private Point leftEar;
+	
+	private Point rightEar;
+	
+	private Point chin;
+	
 	private Point nose;
 
 	private Rect faceRect;
@@ -108,6 +114,11 @@ public class Face
 		
 		leftEye  = fromJson(jObj.optJSONObject("eye_left"));
 		rightEye = fromJson(jObj.optJSONObject("eye_right"));
+		
+		leftEar  = fromJson(jObj.optJSONObject("ear_left"));
+		rightEar = fromJson(jObj.optJSONObject("ear_right"));
+		
+		chin = fromJson(jObj.optJSONObject("chin"));
 		
 		mouthCenter = fromJson(jObj.optJSONObject("mouth_center"));
 		mouthRight  = fromJson(jObj.optJSONObject("mouth_right"));
@@ -248,6 +259,21 @@ public class Face
 		return leftEye;
 	}
 
+	public Point getLeftEar ()
+	{
+		return leftEar;
+	}
+	
+	public Point getRightEar ()
+	{
+		return rightEar;
+	}
+	
+	public Point getChin ()
+	{
+		return chin;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -379,8 +405,8 @@ public class Face
 	public String toString ()
 	{
 		StringBuilder builder = new StringBuilder();
-		
 		builder.append("Face [center=").append(center)
+			   .append(", chin=").append(chin)
 			   .append(", confirmed=").append(confirmed)
 			   .append(", faceConfidence=").append(faceConfidence)
 			   .append(", faceRect=").append(faceRect)
@@ -389,6 +415,7 @@ public class Face
 			   .append(", guesses=").append(guesses)
 			   .append(", height=").append(height)
 			   .append(", label=").append(label)
+			   .append(", leftEar=").append(leftEar)
 			   .append(", leftEye=").append(leftEye)
 			   .append(", manual=").append(manual)
 			   .append(", mouthCenter=").append(mouthCenter)
@@ -396,13 +423,15 @@ public class Face
 			   .append(", mouthRight=").append(mouthRight)
 			   .append(", nose=").append(nose)
 			   .append(", pitch=").append(pitch)
+			   .append(", rightEar=").append(rightEar)
 			   .append(", rightEye=").append(rightEye)
 			   .append(", roll=").append(roll)
 			   .append(", smiling=").append(smiling)
 			   .append(", threshold=").append(threshold)
 			   .append(", tid=").append(tid)
 			   .append(", width=").append(width)
-			   .append(", yaw=").append(yaw).append("]");
+			   .append(", yaw=").append(yaw)
+			   .append("]");
 		
 		return builder.toString();
 	}
