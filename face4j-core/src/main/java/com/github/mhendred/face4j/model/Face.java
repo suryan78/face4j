@@ -61,37 +61,37 @@ public class Face
 
 	private Gender gender;
 
-	private List<Guess> guesses;
+	private final List<Guess> guesses;
 
-	private Point center;
+	private final Point center;
 
-	private Point leftEye;
+	private final Point leftEye;
 
-	private Point rightEye;
+	private final Point rightEye;
 
-	private Point mouthLeft;
+	private final Point mouthLeft;
 
-	private Point mouthRight;
+	private final Point mouthRight;
 
-	private Point mouthCenter;
+	private final Point mouthCenter;
 
-	private Point leftEar;
+	private final Point leftEar;
 	
-	private Point rightEar;
+	private final Point rightEar;
 	
-	private Point chin;
+	private final Point chin;
 	
-	private Point nose;
+	private final Point nose;
 
-	private Rect faceRect;
+	private final Rect faceRect;
 
-	private int threshold;
+	private final int threshold;
 	
-	private float yaw;
+	private final float yaw;
 	
-	private float roll;
+	private final float roll;
 	
-	private float pitch;
+	private final float pitch;
 
 	public Face(JSONObject jObj) throws JSONException
 	{
@@ -156,6 +156,9 @@ public class Face
 		return guesses;
 	}
 
+	/**
+	 * @return the {@link Guess} with the highest confidence for this face
+	 */
 	public Guess getGuess ()
 	{
 		try 

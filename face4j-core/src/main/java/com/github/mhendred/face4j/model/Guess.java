@@ -62,6 +62,9 @@ public class Guess extends Pair<String, Integer> implements Comparable<Guess>
 		return guesses;
 	}
 
+	/**
+	 * Used for natural ordering
+	 */
 	@Override
 	public int compareTo (Guess that)
 	{
