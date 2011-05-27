@@ -94,4 +94,16 @@ public class ResponseTests extends BaseTest
 
 		assertEquals(23, gt.getPhotos().size());
 	}
+	
+	@Test
+	public void guessTest () throws Exception
+	{
+		PhotoResponse pr = new PhotoResponseImpl(guesses);
+		
+		Photo p = pr.getPhoto();
+		
+		assertEquals(2, p.getFaceCount());
+		assertEquals("someothergirl@araucana", p.getFaces().get(0).getGuess().first);
+		assertEquals("dude@araucana", p.getFaces().get(1).getGuess().first);
+	}
 }
