@@ -11,16 +11,10 @@ Modules:
 - face4j-examples examples (facebook and twitter examples comming soon)
 
 ---------------------------------------------------------------------------
- BUILD INSTRUCTIONS
 - - - - - - - - - - -
-1. Make sure you have maven 2.2.1 installed
-3. cd into the face4j root directory
-2. $mvn clean install
-
----------------------------------------------------------------------------
  ADDING TO PROJECTS
 - - - - - - - - - - -
-add this to your pom.xml
+add to your pom.xml
 
 	<dependency>
 		<groupId>org.face4j</groupId>
