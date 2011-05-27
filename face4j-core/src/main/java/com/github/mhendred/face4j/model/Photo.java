@@ -59,7 +59,7 @@ public class Photo
 		pid = jObj.getString("pid");
 
 		width = jObj.getInt("width");
-		height = jObj.getInt("height");
+		height = jObj.getInt("height"); 
 
 		tags = fromJsonArray(jObj.getJSONArray("tags"));
 	}
