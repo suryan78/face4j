@@ -28,24 +28,39 @@ package com.github.mhendred.face4j;
  * @author Marlon Hendred
  *
  */
-final class Api 
+enum Api 
 {
-	public static final String RECOGNIZE = "/faces/recognize.json";
-	public static final String DETECT    = "/faces/detect.json";
-	public static final String GROUP	 = "/faces/group.json";
-	public static final String TRAIN     = "/faces/train.json";
-	public static final String STATUS    = "/faces/status.json";
-		
-	public static final String REMOVE_TAGS = "/tags/remove.json";
-	public static final String SAVE_TAGS   = "/tags/save.json";
-	public static final String GET_TAGS    = "/tags/get.json";
-	public static final String ADD_TAG     = "/tags/add.json";
+	RECOGNIZE("/faces/recognize.json", true),
+	DETECT("/faces/detect.json", false),
+	GROUP("/faces/group.json", true),
+	TRAIN("/faces/train.json", true),
+	STATUS("/faces/status.json",false),
+	REMOVE_TAGS("/tags/remove.json", true),
+	SAVE_TAGS("/tags/save.json", true),
+	GET_TAGS("/tags/get.json", true),
+	ADD_TAG("/tags/add.json", true),
+	LIMITS("/account/limits.json", false),
+	NAMESPACES("/account/namespaces.json", false),
+	USERS("/account/users.json", false),
+	FACEBOOK("/facebook/get.json", true);
 	
-	public static final String LIMITS     = "/account/limits.json";
-	public static final String NAMESPACES = "/account/namespaces.json";
-	public static final String USERS      = "/account/users.json";
+	private final String path;
 	
-	public static final String FACEBOOK    = "/facebook/get.json";
+	private final boolean takesAuth;
 	
-	private Api () {}
+	private Api (String path, boolean takesAuth) 
+	{
+		this.path = path;
+		this.takesAuth = takesAuth;
+	}
+	
+	public String getPath ()
+	{
+		return path;
+	}
+	
+	public boolean takesAuth ()
+	{
+		return takesAuth;
+	}
 }
