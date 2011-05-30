@@ -28,8 +28,6 @@ import java.net.URL;
 import java.util.List;
 
 import org.apache.commons.lang.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.github.mhendred.face4j.exception.FaceClientException;
 import com.github.mhendred.face4j.exception.FaceServerException;
@@ -69,11 +67,6 @@ import com.github.mhendred.face4j.response.UsersResponseImpl;
  */
 public class DefaultFaceClient implements FaceClient
 {	
-	/**
-	 * Logger (SLF4J)
-	 */
-	private static final Logger logger = LoggerFactory.getLogger(FaceClient.class);
-	
 	/**
 	 * Default API end point @TODO: set from properties
 	 */
@@ -239,7 +232,6 @@ public class DefaultFaceClient implements FaceClient
 		params.put("filter", filter);
 		params.put("together", together);
 		params.put("limit", limit);
-		params.put("user_auth", creds.getAuthString());
 
 		final String json = executePost(Api.GET_TAGS, params);
 		final GetTagsResponse response = new GetTagsResponseImpl(json);
@@ -279,8 +271,6 @@ public class DefaultFaceClient implements FaceClient
 		Validate.notEmpty(uids, "User IDs cannot be null");
 			
 		final Parameters params = new Parameters("uids", uids);
-		params.put("user_auth", creds.getAuthString());
-
 		final String json =  executePost(imageFile, Api.RECOGNIZE, params);
 		final PhotoResponse response = new PhotoResponseImpl(json);		
 		
@@ -299,7 +289,6 @@ public class DefaultFaceClient implements FaceClient
 		final Parameters params = new Parameters("uids", uids);
 		
 		params.put("urls", urls);
-		params.put("user_auth", creds.getAuthString());
 
 		final String json = executePost(Api.RECOGNIZE, params);
 		final PhotoResponse response = new PhotoResponseImpl(json);
@@ -369,8 +358,6 @@ h	 * @see {@link FaceClient#detect(URL)}
 		final Parameters params = new Parameters();
 
 		params.put("uids", uids);
-		params.put("user_auth", creds.getAuthString());
-
 		
 		final String json = executePost(Api.FACEBOOK, params);
 		final PhotoResponse response = new PhotoResponseImpl(json);
@@ -391,8 +378,6 @@ h	 * @see {@link FaceClient#detect(URL)}
 		
 		params.put("uids", uids);
 		params.put("urls", urls);
-		params.put("user_auth", creds.getAuthString());
-
 
 		final String json = executePost(Api.GROUP, params);
 		final GroupResponse response = new GroupResponseImpl(json);
@@ -412,7 +397,6 @@ h	 * @see {@link FaceClient#detect(URL)}
 		final Parameters params = new Parameters();
 		
 		params.put("uids", uids);
-		params.put("user_auth", creds.getAuthString());
 		
 		final String json = executePost(imageFile, Api.GROUP, params);
 		final GroupResponse response = new GroupResponseImpl(json);
@@ -540,22 +524,20 @@ h	 * @see {@link FaceClient#detect(URL)}
 		return isAggressive;	
 	}
 	
-	private String executePost(String api, Parameters params) throws FaceClientException, FaceServerException
+	private String executePost(Api api, Parameters params) throws FaceClientException, FaceServerException
 	{
 		return executePost(null, api, params);
 	}
 	
-	private String executePost(File file, String api, Parameters params) throws FaceClientException, FaceServerException
+	private String executePost(File file, Api api, Parameters params) throws FaceClientException, FaceServerException
 	{
-		final URI uri = baseURI.resolve(api);
+		final URI uri = baseURI.resolve(api.getPath());
 		
 		params.putAll(reqd.getMap());
 
-		if (logger.isDebugEnabled())
+		if (api.takesAuth())
 		{
-			logger.debug("POSTing to: {} ", uri.toString());
-			logger.debug("Detector mode [{}]", (isAggressive ? "agressive" : "normal"));
-			logger.debug("POST parameters: {}", params.toString());
+			params.put("user_auth", creds.getAuthString());
 		}
 		
 		if (file != null)

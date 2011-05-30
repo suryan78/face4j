@@ -9,11 +9,15 @@ import com.github.mhendred.face4j.model.Photo;
 public class ClientExample 
 {
 	private static final String API_KEY = "";
+	
 	private static final String API_SEC = "";
 
-	private static final String URL_WITH_FACES = "";
+	private static final String URL_WITH_FACES = "http://seedmagazine.com/images/uploads/attractive_article.jpg";
 
-	private static final String USER_ID = "a_user_id@yournamespace";
+	private static final String NAMESPACE = "araucana";
+
+	private static final String USER_ID = "a_user_id@" + NAMESPACE;
+	
 
     public static void main(String[] args) throws FaceClientException, FaceServerException
     {
@@ -31,8 +35,7 @@ public class ClientExample
     	Photo photo = faceClient.detect(URL_WITH_FACES).get(0);
     
     	/*
-    	 * Now we pull out the temporary tag and call save with the desired username and label (label can be null)
-    	 * IMPORTANT: dont forget the @namespace on the userid! face.com will complain if its not there.
+    	 * Now we pull out the temporary tag and call save with the desired username and label.
     	 */
     	Face f = photo.getFace();
     	faceClient.saveTags(f.getTID(), USER_ID, "a label");
@@ -54,6 +57,11 @@ public class ClientExample
     	 * Now we can call recognize. Look for any user in our index (we only have one now)
     	 * We should see a guess now
     	 */
-    	photo = faceClient.recognize(URL_WITH_FACES, "all@yournamespace").get(0);
+    	photo = faceClient.recognize(URL_WITH_FACES, "all@" + NAMESPACE).get(0);
+    	
+    	for (Face face : photo.getFaces())
+    	{
+    		System.out.println(face.getGuesses());
+    	}
     }
 }
