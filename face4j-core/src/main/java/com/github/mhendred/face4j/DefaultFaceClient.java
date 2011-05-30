@@ -28,8 +28,6 @@ import java.net.URL;
 import java.util.List;
 
 import org.apache.commons.lang.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.github.mhendred.face4j.exception.FaceClientException;
 import com.github.mhendred.face4j.exception.FaceServerException;
@@ -69,11 +67,6 @@ import com.github.mhendred.face4j.response.UsersResponseImpl;
  */
 public class DefaultFaceClient implements FaceClient
 {	
-	/**
-	 * Logger (SLF4J)
-	 */
-	private static final Logger logger = LoggerFactory.getLogger(FaceClient.class);
-	
 	/**
 	 * Default API end point @TODO: set from properties
 	 */
@@ -545,13 +538,6 @@ h	 * @see {@link FaceClient#detect(URL)}
 		if (api.takesAuth())
 		{
 			params.put("user_auth", creds.getAuthString());
-		}
-		
-		if (logger.isDebugEnabled())
-		{
-			logger.debug("POSTing to: {} ", uri.toString());
-			logger.debug("Detector mode [{}]", (isAggressive ? "agressive" : "normal"));
-			logger.debug("POST parameters: {}", params.toString());
 		}
 		
 		if (file != null)
