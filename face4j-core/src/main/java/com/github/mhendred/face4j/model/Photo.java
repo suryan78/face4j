@@ -117,7 +117,7 @@ public class Photo
 	 * 
 	 * @see com.face.api.client.model.Photo#getWidth()
 	 */
-	public float getWidth ()
+	public int getWidth ()
 	{
 		return this.width;
 	}
@@ -127,7 +127,7 @@ public class Photo
 	 * 
 	 * @see com.face.api.client.model.Photo#getHeight()
 	 */
-	public float getHeight ()
+	public int getHeight ()
 	{
 		return this.height;
 	}

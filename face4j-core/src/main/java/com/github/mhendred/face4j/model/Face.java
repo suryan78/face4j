@@ -192,6 +192,11 @@ public class Face
 		return height;
 	}
 
+    public int getFaceConfidence()
+    {
+        return faceConfidence;
+    }
+
 	/*
 	 * (non-Javadoc)
 	 * 
