@@ -168,7 +168,7 @@ public class Face
 		
 		catch (NoSuchElementException nsee)
 		{
-			return null;
+			return new Guess();
 		}
 	}
 

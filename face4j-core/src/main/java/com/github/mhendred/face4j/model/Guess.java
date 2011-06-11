@@ -31,6 +31,14 @@ import org.json.JSONObject;
 
 public class Guess extends Pair<String, Integer> implements Comparable<Guess>
 {
+	// Default to unknown
+	public Guess()
+	{
+		super();
+		
+		this.first  = "Unknown";
+		this.second = 100; 
+	}
 	public Guess(final JSONObject jObj) throws JSONException
 	{
 		super();
@@ -38,12 +46,17 @@ public class Guess extends Pair<String, Integer> implements Comparable<Guess>
 		this.first  = jObj.getString("uid");
 		this.second = jObj.getInt("confidence");
 	}
-
+	
 	@Override
 	public String toString ()
 	{
 		StringBuilder builder = new StringBuilder();
-		builder.append("Guess [confidence=").append(second).append(", uid=").append(first).append("]");
+		
+		builder.append("Guess [uid=")
+			   .append(first)
+			   .append(", confidence=")
+			   .append(second).append("]");
+		
 		return builder.toString();
 	}
 	
