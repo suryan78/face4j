@@ -19,7 +19,7 @@ add to your pom.xml
 	<dependency>
 		<groupId>org.face4j</groupId>
 		<artifactId>face4j-core</artifactId>
-		<version>1.5.3</version>
+		<version>1.5.4-SNAPSHOT</version>
 	</dependency>
 
 ----------------------------------------------------------------------------
