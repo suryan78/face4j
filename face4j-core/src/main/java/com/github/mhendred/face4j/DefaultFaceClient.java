@@ -535,7 +535,7 @@ h	 * @see {@link FaceClient#detect(URL)}
 		
 		params.putAll(reqd.getMap());
 
-		if (api.takesAuth())
+		if (api.takesAuth() && !creds.isEmpty())
 		{
 			params.put("user_auth", creds.getAuthString());
 		}

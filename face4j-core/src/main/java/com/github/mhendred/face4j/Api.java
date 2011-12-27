@@ -34,7 +34,7 @@ enum Api
 	DETECT("/faces/detect.json", false),
 	GROUP("/faces/group.json", true),
 	TRAIN("/faces/train.json", true),
-	STATUS("/faces/status.json",false),
+	STATUS("/faces/status.json",true),
 	REMOVE_TAGS("/tags/remove.json", true),
 	SAVE_TAGS("/tags/save.json", true),
 	GET_TAGS("/tags/get.json", true),

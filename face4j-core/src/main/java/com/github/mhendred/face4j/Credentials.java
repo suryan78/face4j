@@ -46,11 +46,6 @@ class Credentials extends Parameters
 	
 	public String getAuthString()
 	{		
-		if (isEmpty())
-		{
-			return null;
-		}
-		
 		vals.clear();
 		
 		for (String key : params.keySet())
