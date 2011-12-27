@@ -45,6 +45,10 @@ public class Face
 
 	private String label;
 
+	private String mood;
+	
+	private String lips;
+	
 	private final boolean confirmed;
 
 	private final boolean manual;
@@ -140,6 +144,12 @@ public class Face
 		if (jObj.has("gender"))
 			gender = Gender.valueOf(jObj.getJSONObject("gender").getString("value"));
 
+		if(jObj.has("mood"))
+			mood = jObj.getJSONObject("mood").getString("value");
+		
+		if(jObj.has("lips"))
+			lips = jObj.getJSONObject("lips").getString("value");
+		
 		faceConfidence = jObj.getJSONObject("face").getInt("confidence");
 		
 		faceRect = new Rect(center, width, height);		
@@ -207,6 +217,10 @@ public class Face
 		return label;
 	}
 
+	public String getLips () 
+	{
+		return lips;
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -217,6 +231,10 @@ public class Face
 		return tid;
 	}
 
+	public String getMood() 
+	{
+		return mood;
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -331,7 +349,7 @@ public class Face
 	{
 		return faceConfidence > 50;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -436,6 +454,8 @@ public class Face
 			   .append(", roll=").append(roll)
 			   .append(", smiling=").append(smiling)
 			   .append(", threshold=").append(threshold)
+			   .append(", lips=").append(lips)
+			   .append(", mood=").append(mood)
 			   .append(", tid=").append(tid)
 			   .append(", width=").append(width)
 			   .append(", yaw=").append(yaw)
