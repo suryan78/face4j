@@ -122,6 +122,9 @@ public class DefaultFaceClient implements FaceClient
 	 */
 	public DefaultFaceClient (final String apiKey, final String apiSecret, final Responder responder)
 	{
+		Validate.notEmpty(apiKey, "API key cannot be empty");
+		Validate.notEmpty(apiSecret, "API secret cannot be empty");
+		
 		this.baseURI = URI.create(API_ENDPOINT);
 		this.http    = responder;
 		this.creds   = new Credentials();
