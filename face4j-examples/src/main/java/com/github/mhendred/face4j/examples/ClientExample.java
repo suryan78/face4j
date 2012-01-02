@@ -6,19 +6,41 @@ import com.github.mhendred.face4j.exception.FaceClientException;
 import com.github.mhendred.face4j.exception.FaceServerException;
 import com.github.mhendred.face4j.model.Face;
 import com.github.mhendred.face4j.model.Photo;
+
+/**
+ * This is an example of using the client to train your index for one new user. For facebook
+ * you can skip the training step and  just call recognize with facebook credentials set
+ * 
+ * @author mhendred
+ *
+ */
 public class ClientExample 
 {
-	private static final String API_KEY = "";
+	/**
+	 * Your face.com API key
+	 */
+	protected static final String API_KEY = "";
 	
-	private static final String API_SEC = "";
+	/**
+	 * Your face.com API secret
+	 */
+	protected static final String API_SEC = "";
 
-	private static final String URL_WITH_FACES = "http://seedmagazine.com/images/uploads/attractive_article.jpg";
+	/**
+	 * A url of a photo with faces in it
+	 */
+	protected static final String URL_WITH_FACES = "http://seedmagazine.com/images/uploads/attractive_article.jpg";
 
-	private static final String NAMESPACE = "araucana";
+	/**
+	 * Your face.com API namespace
+	 */
+	protected static final String NAMESPACE = "araucana";
 
-	private static final String USER_ID = "a_user_id@" + NAMESPACE;
+	/**
+	 * user id to recognize
+	 */
+	protected static final String USER_ID = "a_user_id@" + NAMESPACE;
 	
-
     public static void main(String[] args) throws FaceClientException, FaceServerException
     {
     	FaceClient faceClient = new DefaultFaceClient(API_KEY, API_SEC);
