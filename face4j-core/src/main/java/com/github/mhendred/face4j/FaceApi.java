@@ -28,7 +28,7 @@ package com.github.mhendred.face4j;
  * @author Marlon Hendred
  *
  */
-enum Api 
+public enum FaceApi 
 {
 	RECOGNIZE("/faces/recognize.json", true),
 	DETECT("/faces/detect.json", false),
@@ -48,7 +48,7 @@ enum Api
 	
 	private final boolean takesAuth;
 	
-	private Api (String path, boolean takesAuth) 
+	private FaceApi (String path, boolean takesAuth) 
 	{
 		this.path = path;
 		this.takesAuth = takesAuth;

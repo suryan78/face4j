@@ -6,9 +6,8 @@
   <parent>
     <artifactId>face4j</artifactId>
     <groupId>com.github.mhendred.face4j</groupId>
-    <version>1.5.4</version>
+    <version>1.6.0</version>
   </parent>
-  <groupId>com.github.mhendred.face4j</groupId>
   <artifactId>face4j-core</artifactId>
   <version>${project.parent.version}</version>
   <name>face4j-core</name>

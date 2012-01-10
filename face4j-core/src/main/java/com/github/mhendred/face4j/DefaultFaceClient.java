@@ -145,7 +145,7 @@ public class DefaultFaceClient implements FaceClient
 		Validate.notEmpty(tids, "Tag ids cannot be empty");
 		
 		final Parameters params = new Parameters("tids", tids);
-		final String json = executePost(Api.REMOVE_TAGS, params);
+		final String json = executePost(FaceApi.REMOVE_TAGS, params);
 		final RemoveTagResponse response = new RemoveTagResponseImpl(json);
 		
 		return response.getRemovedTags();	
@@ -158,7 +158,7 @@ public class DefaultFaceClient implements FaceClient
 	public TrainResponse train (final String uids) throws FaceClientException, FaceServerException
 	{
 		final Parameters params = new Parameters("uids", uids);		
-		final String json = executePost(Api.TRAIN, params);
+		final String json = executePost(FaceApi.TRAIN, params);
 		final TrainResponse response = new TrainResponseImpl(json);
 		
 		return response;
@@ -193,7 +193,7 @@ public class DefaultFaceClient implements FaceClient
 		params.put("label", label);
 
 		// No response
-		executePost(Api.ADD_TAG, params);
+		executePost(FaceApi.ADD_TAG, params);
 	}
 	
 	/**
@@ -236,7 +236,7 @@ public class DefaultFaceClient implements FaceClient
 		params.put("together", together);
 		params.put("limit", limit);
 
-		final String json = executePost(Api.GET_TAGS, params);
+		final String json = executePost(FaceApi.GET_TAGS, params);
 		final GetTagsResponse response = new GetTagsResponseImpl(json);
 		
 		return response.getPhotos();
@@ -257,7 +257,7 @@ public class DefaultFaceClient implements FaceClient
 		params.put("uid", uid);
 		params.put("label", label);
 		
-		final String json = executePost(Api.SAVE_TAGS, params);
+		final String json = executePost(FaceApi.SAVE_TAGS, params);
 		final SaveTagResponse response = new SaveTagResponseImpl(json);
 
 		return response.getSavedTags();
@@ -274,7 +274,7 @@ public class DefaultFaceClient implements FaceClient
 		Validate.notEmpty(uids, "User IDs cannot be null");
 			
 		final Parameters params = new Parameters("uids", uids);
-		final String json =  executePost(imageFile, Api.RECOGNIZE, params);
+		final String json =  executePost(imageFile, FaceApi.RECOGNIZE, params);
 		final PhotoResponse response = new PhotoResponseImpl(json);		
 		
 		return response.getPhoto();
@@ -293,7 +293,7 @@ public class DefaultFaceClient implements FaceClient
 		
 		params.put("urls", urls);
 
-		final String json = executePost(Api.RECOGNIZE, params);
+		final String json = executePost(FaceApi.RECOGNIZE, params);
 		final PhotoResponse response = new PhotoResponseImpl(json);
 				
 		return response.getPhotos();
@@ -308,7 +308,7 @@ h	 * @see {@link FaceClient#detect(URL)}
 		Validate.notNull(imageFile, "File is null");
 		Validate.isTrue(imageFile.exists(), "File doesn't exist!");
 		
-		final String json = executePost(imageFile, Api.DETECT, new Parameters());
+		final String json = executePost(imageFile, FaceApi.DETECT, new Parameters());
 		final PhotoResponse response = new PhotoResponseImpl(json);
 		
 		return response.getPhoto();
@@ -326,7 +326,7 @@ h	 * @see {@link FaceClient#detect(URL)}
 		
 		params.put("urls", urls);
 		
-		final String json = executePost(Api.DETECT, params);
+		final String json = executePost(FaceApi.DETECT, params);
 		final PhotoResponse response = new PhotoResponseImpl(json);
 		
 		return response.getPhotos();
@@ -344,7 +344,7 @@ h	 * @see {@link FaceClient#detect(URL)}
 
 		params.put("uids", uids);
 		
-		final String json = executePost(Api.STATUS, params);
+		final String json = executePost(FaceApi.STATUS, params);
 		final StatusResponse response = new StatusResponseImpl(json);
 			
 		return response.getTrainingStatus();
@@ -362,7 +362,7 @@ h	 * @see {@link FaceClient#detect(URL)}
 
 		params.put("uids", uids);
 		
-		final String json = executePost(Api.FACEBOOK, params);
+		final String json = executePost(FaceApi.FACEBOOK, params);
 		final PhotoResponse response = new PhotoResponseImpl(json);
 						
 		return response.getPhotos();	
@@ -382,7 +382,7 @@ h	 * @see {@link FaceClient#detect(URL)}
 		params.put("uids", uids);
 		params.put("urls", urls);
 
-		final String json = executePost(Api.GROUP, params);
+		final String json = executePost(FaceApi.GROUP, params);
 		final GroupResponse response = new GroupResponseImpl(json);
 						
 		return response;
@@ -401,7 +401,7 @@ h	 * @see {@link FaceClient#detect(URL)}
 		
 		params.put("uids", uids);
 		
-		final String json = executePost(imageFile, Api.GROUP, params);
+		final String json = executePost(imageFile, FaceApi.GROUP, params);
 		final GroupResponse response = new GroupResponseImpl(json);
 			
 		return response;
@@ -418,7 +418,7 @@ h	 * @see {@link FaceClient#detect(URL)}
 		final Parameters params = new Parameters();
 		params.put("namespaces", namespaces);
 		
-		final String json = executePost(Api.USERS, params);
+		final String json = executePost(FaceApi.USERS, params);
 		final UsersResponse response = new UsersResponseImpl(json, namespaces);
 		
 		return response;
@@ -430,7 +430,7 @@ h	 * @see {@link FaceClient#detect(URL)}
 	@Override
 	public LimitsResponse getLimits () throws FaceClientException, FaceServerException
 	{
-		final String json = executePost(Api.LIMITS, new Parameters());
+		final String json = executePost(FaceApi.LIMITS, new Parameters());
 		final LimitsResponse response = new LimitsResponseImpl(json);
 		
 		return response;
@@ -442,7 +442,7 @@ h	 * @see {@link FaceClient#detect(URL)}
 	@Override
 	public List<Namespace> namespaces() throws FaceClientException, FaceServerException
 	{
-		final String json = executePost(Api.NAMESPACES, new Parameters());
+		final String json = executePost(FaceApi.NAMESPACES, new Parameters());
 		final NamespaceResponse response = new NamespaceResponseImpl(json);
 		
 		return response.getNamespaces();
@@ -527,18 +527,18 @@ h	 * @see {@link FaceClient#detect(URL)}
 		return isAggressive;	
 	}
 	
-	private String executePost(Api api, Parameters params) throws FaceClientException, FaceServerException
+	private String executePost(FaceApi faceApi, Parameters params) throws FaceClientException, FaceServerException
 	{
-		return executePost(null, api, params);
+		return executePost(null, faceApi, params);
 	}
 	
-	private String executePost(File file, Api api, Parameters params) throws FaceClientException, FaceServerException
+	private String executePost(File file, FaceApi faceApi, Parameters params) throws FaceClientException, FaceServerException
 	{
-		final URI uri = baseURI.resolve(api.getPath());
+		final URI uri = baseURI.resolve(faceApi.getPath());
 		
 		params.putAll(reqd.getMap());
 
-		if (api.takesAuth() && !creds.isEmpty())
+		if (faceApi.takesAuth() && !creds.isEmpty())
 		{
 			params.put("user_auth", creds.getAuthString());
 		}

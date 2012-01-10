@@ -8,7 +8,7 @@ Author: Marlon Hendred
 Modules:
 
 - face4j-core (core library)
-- face4j-examples (small example)
+- face4j-examples examples (facebook and twitter examples coming soon)
 
 ---------------------------------------------------------------------------
 - - - - - - - - - - -
@@ -19,7 +19,7 @@ add to your pom.xml
 	<dependency>
 		<groupId>org.face4j</groupId>
 		<artifactId>face4j-core</artifactId>
-		<version>1.5.4</version>
+		<version>1.6.0</version>
 	</dependency>
 
 ----------------------------------------------------------------------------
