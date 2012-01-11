@@ -1,6 +1,7 @@
 package com.github.mhendred.face4j;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import com.github.mhendred.face4j.response.LimitsResponse;
 import com.github.mhendred.face4j.response.TrainResponse;
 import com.github.mhendred.face4j.response.UsersResponse;
 
-public class AsyncFaceClient
+public class AsyncFaceClient implements Serializable
 {
 	private final List<RequestListener> listeners;
 	

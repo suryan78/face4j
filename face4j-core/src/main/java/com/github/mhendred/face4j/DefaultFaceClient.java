@@ -23,6 +23,7 @@
 package com.github.mhendred.face4j;
 
 import java.io.File;
+import java.io.Serializable;
 import java.net.URI;
 import java.net.URL;
 import java.util.List;
@@ -65,7 +66,7 @@ import com.github.mhendred.face4j.response.UsersResponseImpl;
  * @see {@link FaceClient}  
  * @see <a href="http://developers.face.com/docs/">Developer's page</a>
  */
-public class DefaultFaceClient implements FaceClient
+public class DefaultFaceClient implements FaceClient, Serializable
 {	
 	/**
 	 * Default API end point @TODO: set from properties
