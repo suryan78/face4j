@@ -23,6 +23,7 @@
 package com.github.mhendred.face4j;
 
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 
@@ -48,7 +49,7 @@ import com.github.mhendred.face4j.response.UsersResponse;
  * 
  * @see <a href="http://developers.face.com/docs/">Developer's page</a>
  */
-public interface FaceClient 
+public interface FaceClient extends Serializable
 {	
 	/**
 	 * Returns tags for detected faces in a single photo, with geometric information of the tag, 
