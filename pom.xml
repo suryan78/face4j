@@ -49,9 +49,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <scm>
-  	<connection>scm:git@github.com:mhendred/face4j.git</connection>
-  	<developerConnection>scm:git@github.com:mhendred/face4j.git</developerConnection>
-  	<url>git@github.com:mhendred/face4j.git</url>
+  	<connection>scm:git:git@github.com:mhendred/face4j.git</connection>
+  	<developerConnection>scm:git:git@github.com:mhendred/face4j.git</developerConnection>
+  	<url>scm:git:git@github.com:mhendred/face4j.git</url>
   </scm>
   <build>
         <defaultGoal>install</defaultGoal>
