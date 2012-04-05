@@ -12,14 +12,17 @@ Modules:
 
 ---------------------------------------------------------------------------
 - - - - - - - - - - -
- ADDING TO PROJECTS
+ ADDING TO PROJECTS	
 - - - - - - - - - - -
+
+The latest release version is 1.6.2
+
 add to your pom.xml
 
 	<dependency>
 		<groupId>com.github.mhendred.face4j</groupId>
 		<artifactId>face4j-core</artifactId>
-		<version>1.6.2-SNAPSHOT</version>
+		<version>1.6.2</version>
 	</dependency>
 
 ----------------------------------------------------------------------------
