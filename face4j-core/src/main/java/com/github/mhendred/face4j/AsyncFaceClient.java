@@ -19,7 +19,6 @@ import com.github.mhendred.face4j.response.UsersResponse;
 
 public class AsyncFaceClient implements Serializable {
     private final List<RequestListener> listeners;
-
     private final FaceClient faceClient;
 
     public AsyncFaceClient(FaceClient faceClient) {
@@ -28,8 +27,7 @@ public class AsyncFaceClient implements Serializable {
     }
 
     public AsyncFaceClient(String apiKey, String apiSecret) {
-	this.faceClient = new DefaultFaceClient(apiKey, apiSecret);
-	this.listeners = new LinkedList<RequestListener>();
+	this(new DefaultFaceClient(apiKey, apiSecret));
     }
 
     public void addTag(final String url, final float x, final float y, final int width,
