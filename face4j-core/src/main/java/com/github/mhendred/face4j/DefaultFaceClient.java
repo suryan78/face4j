@@ -305,11 +305,16 @@ h	 * @see {@link FaceClient#detect(URL)}
 	 */
 	@Override
 	public Photo detect (final File imageFile) throws FaceClientException, FaceServerException
+	{
+		return detect(imageFile, new Parameters());
+	}
+	
+	public Photo detect(final File imageFile, Parameters params) throws FaceClientException, FaceServerException
 	{	
 		Validate.notNull(imageFile, "File is null");
 		Validate.isTrue(imageFile.exists(), "File doesn't exist!");
 		
-		final String json = executePost(imageFile, FaceApi.DETECT, new Parameters());
+		final String json = executePost(imageFile, FaceApi.DETECT, params);
 		final PhotoResponse response = new PhotoResponseImpl(json);
 		
 		return response.getPhoto();
@@ -321,17 +326,37 @@ h	 * @see {@link FaceClient#detect(URL)}
 	@Override
 	public List<Photo> detect (final String urls) throws FaceClientException, FaceServerException
 	{
-		Validate.notNull(urls, "URLs cannot be null");
-		
 		final Parameters params = new Parameters();
-		
-		params.put("urls", urls);
-		
-		final String json = executePost(FaceApi.DETECT, params);
-		final PhotoResponse response = new PhotoResponseImpl(json);
-		
-		return response.getPhotos();
+        params.put("urls", urls);
+        return detect(urls, params);
 	}
+	
+	public List<Photo> detect(final String urls, Parameters params) throws FaceClientException, FaceServerException
+    {
+        Validate.notNull(urls, "URLs cannot be null");
+
+        final String json = executePost(FaceApi.DETECT, params);
+        final PhotoResponse response = new PhotoResponseImpl(json);
+
+        return response.getPhotos();
+    }
+	
+	public List<Photo> detectAllAttributes(final String urls) throws FaceClientException, FaceServerException
+    {
+        final Parameters params = new Parameters();
+        params.put("urls", urls);
+        params.put("attributes", "all");
+        
+        return detect(urls, params);
+    }
+	
+	public Photo detectAllAttributes(final File imageFile) throws FaceClientException, FaceServerException
+    {
+        final Parameters params = new Parameters();
+        params.put("attributes", "all");
+        
+        return detect(imageFile, params);
+    }
 
 	/**
 	 * @see {@link FaceClient#status(String)}

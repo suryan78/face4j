@@ -102,7 +102,23 @@ public class Face
     private int ageMax;
 
     private int ageMin;
-
+    
+    private int genderConfidence;
+    
+    private int ageEstConfidence;
+    
+    private int ageMinConfidence;
+    
+    private int ageMaxConfidence;
+    
+    private int glassesConfidence;
+    
+    private int lipsConfidence;
+    
+    private int moodConfidence;
+    
+    private int smilingConfidence;
+    
     public Face(JSONObject jObj) throws JSONException
     {
 	tid = jObj.getString("tid");
@@ -141,29 +157,53 @@ public class Face
 	// Attributes
 	jObj = jObj.getJSONObject("attributes");
 
-	if (jObj.has("smiling"))
-	    smiling = jObj.getJSONObject("smiling").getBoolean("value");
+	if (jObj.has("smiling")) 
+	{
+		smiling = jObj.getJSONObject("smiling").getBoolean("value");
+		smilingConfidence = jObj.getJSONObject("smiling").getInt("confidence");
+	}
 
 	if (jObj.has("glasses"))
+	{
 	    glasses = jObj.getJSONObject("glasses").getBoolean("value");
+	    glassesConfidence = jObj.getJSONObject("glasses").getInt("confidence");
+	}
 
 	if (jObj.has("gender"))
+	{
 	    gender = Gender.valueOf(jObj.getJSONObject("gender").getString("value"));
+	    genderConfidence = jObj.getJSONObject("gender").getInt("confidence");
+	}
 
 	if(jObj.has("mood"))
+	{
 	    mood = jObj.getJSONObject("mood").getString("value");
+	    moodConfidence = jObj.getJSONObject("mood").getInt("confidence");
+	}
 
 	if(jObj.has("lips"))
+	{
 	    lips = jObj.getJSONObject("lips").getString("value");
+	    lipsConfidence = jObj.getJSONObject("lips").getInt("confidence");
+	}
 
-	if(jObj.has("age-est"))
-	    ageEst = jObj.getJSONObject("age-est").getInt("vaule");
+	if(jObj.has("age_est"))
+	{
+	    ageEst = jObj.getJSONObject("age_est").getInt("value");
+	    ageEstConfidence = jObj.getJSONObject("age_est").getInt("confidence");
+	}
 
-	if(jObj.has("age-min"))
-	    ageMin = jObj.getJSONObject("age-min").getInt("vaule");
+	if(jObj.has("age_min"))
+	{
+	    ageMin = jObj.getJSONObject("age_min").getInt("value");
+	    ageMinConfidence = jObj.getJSONObject("age_min").getInt("confidence"); 
+	}
 
-	if(jObj.has("age-max"))
-	    ageMax = jObj.getJSONObject("age-max").getInt("vaule");
+	if(jObj.has("age_max"))
+	{
+	    ageMax = jObj.getJSONObject("age_max").getInt("value");
+	    ageMaxConfidence = jObj.getJSONObject("age_max").getInt("confidence");
+	}
 
 	faceConfidence = jObj.getJSONObject("face").getInt("confidence");
 
@@ -219,6 +259,46 @@ public class Face
     public int getFaceConfidence()
     {
 	return faceConfidence;
+    }
+    
+    public int getGenderConfidence()
+    {
+        return genderConfidence;
+    }
+
+    public int getGlassesConfidence()
+    {
+        return glassesConfidence;
+    }
+
+    public int getLipsConfidence()
+    {
+        return lipsConfidence;
+    }
+
+    public int getMoodConfidence()
+    {
+        return moodConfidence;
+    }
+
+    public int getSmilingConfidence()
+    {
+        return smilingConfidence;
+    }
+
+    public int getAgeEstConfidence()
+    {
+        return ageEstConfidence;
+    }
+
+    public int getAgeMinConfidence()
+    {
+        return ageMinConfidence;
+    }
+
+    public int getAgeMaxConfidence()
+    {
+        return ageMaxConfidence;
     }
 
     /*
